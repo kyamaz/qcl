@@ -39,6 +39,7 @@ struct OutputFormat {
   const char *ket_end;
   const char *exor;
   const char *imag;
+  const char *deg;
   const char *ldots;
   const char *mult;
   const char *matrix_beg;

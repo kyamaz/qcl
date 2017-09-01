@@ -44,7 +44,7 @@ string safestring(const char *s) {
   return t;
 }
 
-int yyerror(char* s) {
+int yyerror(const char* s) {
   string t;
   if(!yyStringBufferActive) {
     t+="in "+yyFilename+", line "+sdec(yylineno)+", ";

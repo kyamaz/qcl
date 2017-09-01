@@ -20,12 +20,13 @@ warranty of merchantability or fitness for any particular purpose.
 #include <getopt.h>
 #include <fstream>
 #include <stack>
+#include <string.h>
 
 #include "types.h"
 #include "format.h"
 
-#define VERSION    "QCL version 0.6.3"
-#define COPYRIGHT  "(c) by Bernhard Oemer, 1998-2006"
+#define VERSION    "QCL version 0.6.4"
+#define COPYRIGHT  "(c) by Bernhard Oemer, 1998-2014"
 #define DISCLAIMER "This program is free software under the terms of the GPL"
 
 #define QUOTE(x) #x
@@ -91,6 +92,7 @@ extern string optIncludePath;
 extern string optUserPath;
 extern int optSeed;
 extern char optDumpFormat;
+extern int optDumpPolar;
 extern int optShowRegs;
 extern int optQuregMask;
 extern int optDebug;

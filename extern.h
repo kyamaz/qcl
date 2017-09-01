@@ -29,7 +29,7 @@ public:
 
 struct RoutTableEntry {
   tExtRout *rout;
-  char *id;
+  const char *id;
 };
 
 extern RoutTableEntry ExtRoutTable[];

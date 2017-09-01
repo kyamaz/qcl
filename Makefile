@@ -10,15 +10,15 @@
 #      This program is free software under the terms of the 
 #      GNU General Public Licence (GPL) version 2 or higher
 
-VERSION=0.6.3
+VERSION=0.6.4
 
 # Directory for Standard .qcl files
 
-QCLDIR = /scratch/ppham/local/lib/qcl
+QCLDIR = /usr/local/lib/qcl
 
 # Path for qcl binaries
 
-QCLBIN = /scratch/ppham/local/bin
+QCLBIN = /usr/local/bin
 
 ARCH = `g++ -dumpmachine || echo bin`
 
@@ -39,8 +39,8 @@ DEBUG = -O2 -g -DQCL_DEBUG -DQC_DEBUG
 #
 # Comment out if you don't have GNU libplotter and X
 
-#PLOPT = -DQCL_PLOT
-#PLLIB = -L/usr/X11/lib -lplotter
+PLOPT = -DQCL_PLOT
+PLLIB = -L/usr/X11/lib -lplotter
 
 # Readline support
 #
@@ -59,9 +59,17 @@ IRQOPT = -DQCL_IRQ
 
 # Replace with lex and yacc on non-GNU systems (untested)
 
-LEX = /scratch/ppham/local/bin/flex
+LEX = flex
 YACC = bison 
 INSTALL = install
+
+# Character encoding
+#
+# one of ASCII, LAT1 or UTF8 (currently only affects the degree sign)
+
+#ENCOPT = -DQCL_ASCII
+#ENCOPT = -DQCL_LAT1
+ENCOPT = -DQCL_UTF8
 
 ##### You shouldn't have to edit the stuff below #####
 
@@ -73,8 +81,8 @@ QCLINC = lib
 
 #CXX = g++
 #CPP = $(CC) -E
-CXXFLAGS = -c $(ARCHOPT) -Wall $(DEBUG) $(PLOPT) $(RLOPT) $(IRQOPT) -I$(QCDIR) -DDEF_INCLUDE_PATH="\"$(QCLDIR)\"" -fpermissive
-LDFLAGS = $(ARCHOPT) -L/scratch/ppham/local/lib -L$(QCDIR) $(DEBUG) $(PLLIB) -lm -lfl -lqc $(RLLIB) 
+CXXFLAGS = -c $(ARCHOPT) $(DEBUG) $(PLOPT) $(RLOPT) $(IRQOPT) $(ENCOPT) -I$(QCDIR) -DDEF_INCLUDE_PATH="\"$(QCLDIR)\""
+LDFLAGS = $(ARCHOPT) -L$(QCDIR) $(DEBUG) $(PLLIB) -lm -lfl -lqc $(RLLIB) 
 
 FILESCC = $(wildcard *.cc)
 FILESH = $(wildcard *.h)

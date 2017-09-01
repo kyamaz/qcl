@@ -19,7 +19,7 @@ warranty of merchantability or fitness for any particular purpose.
 #include "syntax.h"
 #include "parse.h"
 
-extern int yyerror (char *s);  /* Called by yyparse on error */
+extern int yyerror (const char *s);  /* Called by yyparse on error */
 extern objlist *yyObjList;
 
 extern int yylex();

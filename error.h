@@ -22,7 +22,7 @@ warranty of merchantability or fitness for any particular purpose.
 
 class tError;
 
-int yyerror(char*);
+int yyerror(const char*);
 
 enum ErrType { errNONE, errEXIT, errMSG, errINT, errLEXICAL, errPARSE, 
                errTYPMIS, errINVTYP, errPARMIS, errINVPAR, errSYMBOL, 

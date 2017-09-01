@@ -15,7 +15,6 @@ warranty of merchantability or fitness for any particular purpose.
 
 #include <stdio.h>
 #include <time.h>
-#include <string.h>
 
 #include "options.h"
 #include "error.h"
@@ -99,7 +98,8 @@ void printusage(char *name) {
   cerr << "--library=<y|n>                 ignore redefinitions of existing symbols (n)\n";
   cerr << "-d, --dump-file=<file>          send output of dump-command to <file> (none)\n";
   cerr << "-p, --plot-file=<file>          Postscript file created by plot-command (none)\n";
-  cerr << "-f, --dump-format=x,d,b         list base vectors as hex, decimal or binary (d)\n";
+  cerr << "-f, --dump-format=x,d,b,X,D,B   list base vectors as hex, decimal or binary (d)\n";
+  cerr << "                                lower case for cartesian, upper for polar values\n";
   cerr << "-r, --show-regs=<y|n>           show global registers in dumped states (y)\n";
   cerr << "-D, --dump-precision=<digits>   shown digits in dumped states (5)\n";
   cerr << "-P, --precision=<digits>        shown digits for real and complex values (6)\n";
@@ -134,6 +134,7 @@ ofstream *optLogfile=0;
 int optBits=BPW;
 int optSeed=time(0);
 char optDumpFormat='d';
+int optDumpPolar=0;
 int optShowRegs=1;
 int optQuregMask=0;
 int optDebug=0;
@@ -181,8 +182,9 @@ void evalopt(int c,const char *arg) {
     case 'U': optUserPath=arg;     		break;
     case 'd': optDumpFilename=arg;   		break;
     case 'p': optPlotFilename=arg;   		break;
-    case 'f': if(!arg[0] || !strchr("hxdba",arg[0])) OPTERR("Invalid dump format");
-  	      optDumpFormat=arg[0];
+    case 'f': if(!arg[0] || !strchr("hxdbaHXDBA",arg[0])) OPTERR("Invalid dump format");
+  	      optDumpFormat=tolower(arg[0]);
+              optDumpPolar=isupper(arg[0]);
   	      if(optDumpFormat=='h') optDumpFormat='x';
   	      break;
     case 'r': LOGVAL(optShowRegs);	   	break;

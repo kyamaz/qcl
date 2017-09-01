@@ -2,7 +2,7 @@
 #
 # This file is part of the Quantum Computation Library (QCLIB).
 # 
-# (c) Copyright by Bernhard Oemer <oemer@tph.tuwien.ac.at>, 1998-2006
+# (c) Copyright by Bernhard Oemer <oemer@tph.tuwien.ac.at>, 1998-2014
 # 
 # This program comes without any warranty; without even the implied 
 # warranty of merchantability or fitness for any particular purpose.

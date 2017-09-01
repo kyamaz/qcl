@@ -133,6 +133,12 @@ spectrum_map *quState::new_spectrum_map(double epsilon) const {
     else
       (*pm)[v]+=p;
   }
+  if(epsilon) {
+    for(spectrum_map::iterator it=pm->begin();it!=pm->end();) {
+      spectrum_map::iterator it0=it++;
+      if(it0->second<epsilon) pm->erase(it0);
+    }
+  }
   return pm;
 }
 

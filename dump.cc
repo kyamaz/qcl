@@ -110,8 +110,10 @@ string amplstr(const tComplex &z,int cont=0) {
   
   if(r!=0 && i!=0) {
     if(cont) sg=" + ";
-//  if(cont && r<0) { r=-r; i=-i; sg=" - "; }
-    sprintf(s,"%s(%.*g%+.*g%s)",sg,p,r,p,i,format->imag);
+    if(optDumpPolar) 
+      sprintf(s,"%s(%.*g;%.*g%s)",sg,p,sqrt(r*r+i*i),p,180.0/PI*atan2(i,r),format->deg);
+    else
+      sprintf(s,"%s(%.*g%+.*g%s)",sg,p,r,p,i,format->imag);
     return s;
   }
   if(cont) sg=" + ";

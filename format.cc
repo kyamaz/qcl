@@ -52,6 +52,13 @@ const OutputFormat FormatPlain = {
   ">",			// ket_end
   ";",			// xor
   "i",			// imag
+#ifdef QCL_UTF8
+  "\xc2\xb0",		// deg
+#elif defined QCL_LAT1
+  "\xb0",		// deg
+#else
+  "deg",		// deg
+#endif
   "...",		// ldots
   " ",			// mult
   "",			// matrix_beg
@@ -85,6 +92,13 @@ const OutputFormat FormatXTerm = {
   ">" XTERM_BLACK,	// ket_end
   ";",			// xor
   "i",			// imag
+#ifdef QCL_UTF8
+  "\xc2\xb0",		// deg
+#elif defined QCL_LAT1
+  "\xb0",		// deg
+#else
+  "deg",		// deg
+#endif
   "...",		// ldots
   " ",			// mult
   "",			// matrix_beg
@@ -118,6 +132,13 @@ const OutputFormat FormatDarkXTerm = {
   ">" XTERM_WHITE,	// ket_end
   ";",			// xor
   "i",			// imag
+#ifdef QCL_UTF8
+  "\xc2\xb0",		// deg
+#elif defined QCL_LAT1
+  "\xb0",		// deg
+#else
+  "deg",		// deg
+#endif
   "...",		// ldots
   " ",			// mult
   "",			// matrix_beg
@@ -152,6 +173,7 @@ const OutputFormat FormatTeXmacs = {
   "}\\rangle}",					// ket_end
   "\\oplus",					// xor
   "i",						// imag
+  "^{\\circ}",					// deg
   "\\ldots",					// ldots
   "\\,",					// mult
   "",			// matrix_beg
